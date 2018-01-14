@@ -1,0 +1,15 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/js/prism.min.js": "/js/prism.min.js",
+    "/js/jquery.min.js": "/js/jquery.min.js",
+    "/css/materialize.min.css": "/css/materialize.min.css",
+    "/js/materialize.min.js": "/js/materialize.min.js",
+    "/js/typeahead.bundle.min.js": "/js/typeahead.bundle.min.js",
+    "/js/materialize-tags.min.js": "/js/materialize-tags.min.js",
+    "/js/materialize-tags.min.js.map": "/js/materialize-tags.min.js.map",
+    "/css/materialize-tags.min.css": "/css/materialize-tags.min.css",
+    "/js/simplemde.min.js": "/js/simplemde.min.js",
+    "/css/simplemde.min.css": "/css/simplemde.min.css",
+    "/css/prism.min.css": "/css/prism.min.css"
+}
