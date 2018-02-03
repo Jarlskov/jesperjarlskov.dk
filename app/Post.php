@@ -4,6 +4,7 @@ namespace App;
 
 use App\Scopes\PublishedScope;
 use App\User;
+use Cviebrock\EloquentTaggable\Taggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
@@ -12,11 +13,10 @@ use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
-use Spatie\Tags\HasTags;
 
 class Post extends Model implements Feedable
 {
-    use HasTags, HasSlug;
+    use Taggable, HasSlug;
 
     protected $fillable = [
         'title',

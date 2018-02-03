@@ -8,6 +8,6 @@
     <form class="col s12" method="post" action="{{ action('Back\PostsController@update', ['post' => $post->id]) }}">
         <input type="hidden" name="_method" value="put" />
 
-        @include('back.posts.partials.form', ['post' => $post, 'available_tags' => $available_tags, 'post_tags' => $post_tags])
+        @include('back.posts.partials.form', ['post' => $post, 'post_tags' => $post_tags])
     </form>
 @endsection

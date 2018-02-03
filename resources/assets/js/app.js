@@ -26,21 +26,39 @@ $(document).ready(() => {
             prefetch: {
                 cache: false,
                 url: '/admin/tags',
+                filter: (list) => {
+                    return $.map(list, (tag) => {
+                        return {name: tag};
+                    });
+                },
             }
         });
 
-        $('.tags input').materialtags({
-            typeaheadjs: {
-                name: 'available_tags',
-                displayKey: 'name',
-                valueKey: 'slug',
-                source: available_tags.ttAdapter()
-            }
+        available_tags.initialize();
+
+        console.log($('#tags'));
+        $('#tags').materialtags({
+            typeaheadjs: [
+                {
+                    highlight: true,
+                },
+                {
+                    name: 'available_tags',
+                    displayKey: 'name',
+                    valueKey: 'name',
+                    source: available_tags.ttAdapter()
+                }
+            ]
         });
 
+        /*
+        console.log($('#tags').val());
         $('.tags input').change((e) => {
+            console.log($(e.currentTarget).val());
             $('#tags').val($(e.currentTarget).val());
+            console.log($('#tags').val());
         });
+        */
 
         new SimpleMDE({ element: document.getElementById('post-body') });
     }

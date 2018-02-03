@@ -13,7 +13,6 @@
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="{{ asset('css/materialize.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/materialize-tags.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/simplemde.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/prism.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -71,7 +70,7 @@
         </div>
     </div>
 
-    <link href="{{ asset('css/materialize-tags.min.css') }}" />
+    <link href="{{ asset('css/materialize-tags.min.css') }}" rel="stylesheet">
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/materialize.min.js') }}"></script>
     <script src="{{ asset('js/typeahead.bundle.min.js') }}"></script>

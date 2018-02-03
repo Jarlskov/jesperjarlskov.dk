@@ -9,7 +9,7 @@
 
 <div class="row">
     <div class="input-field col s12 tags">
-        <input name="tags" id="tags" type="text" value="{{ old('tags', $post_tags->implode(', ') ) }}" data-role="materialtags">
+        <input name="tags" id="tags" type="text" value="{{ old('tags', $post_tags->implode(', ') ) }}">
         <label for="tags">Tags</label>
     </div>
 </div>

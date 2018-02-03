@@ -9,7 +9,6 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use Spatie\Tags\Tag;
 use stdClass;
 
 class ImportWp extends Command
@@ -52,7 +51,6 @@ class ImportWp extends Command
         Schema::disableForeignKeyConstraints();
 
         Post::truncate();
-        Tag::truncate();
 
         Schema::enableForeignKeyConstraints();
     }
@@ -85,7 +83,7 @@ class ImportWp extends Command
                 return $tag->name;
             })
             ->pipe(function (Collection $tags) use ($post) {
-                return $post->attachTags($tags);
+                return $post->tag($tags);
             });
     }
 }

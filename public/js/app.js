@@ -807,22 +807,37 @@ $(document).ready(function () {
             queryTokenizer: Bloodhound.tokenizers.whitespace,
             prefetch: {
                 cache: false,
-                url: '/admin/tags'
+                url: '/admin/tags',
+                filter: function filter(list) {
+                    return $.map(list, function (tag) {
+                        return { name: tag };
+                    });
+                }
             }
         });
 
-        $('.tags input').materialtags({
-            typeaheadjs: {
+        available_tags.initialize();
+
+        console.log($('#tags'));
+        $('#tags').materialtags({
+            typeaheadjs: [{
+                highlight: true
+            }, {
                 name: 'available_tags',
                 displayKey: 'name',
-                valueKey: 'slug',
+                valueKey: 'name',
                 source: available_tags.ttAdapter()
-            }
+            }]
         });
 
-        $('.tags input').change(function (e) {
+        /*
+        console.log($('#tags').val());
+        $('.tags input').change((e) => {
+            console.log($(e.currentTarget).val());
             $('#tags').val($(e.currentTarget).val());
+            console.log($('#tags').val());
         });
+        */
 
         new SimpleMDE({ element: document.getElementById('post-body') });
     }
@@ -17945,9 +17960,9 @@ if (token) {
 
     // Define as an anonymous module so, through path mapping, it can be
     // referenced as the "underscore" module.
-    !(__WEBPACK_AMD_DEFINE_RESULT__ = function() {
+    !(__WEBPACK_AMD_DEFINE_RESULT__ = (function() {
       return _;
-    }.call(exports, __webpack_require__, exports, module),
+    }).call(exports, __webpack_require__, exports, module),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
   }
   // Check for `exports` after `define` in case a build optimizer adds it.

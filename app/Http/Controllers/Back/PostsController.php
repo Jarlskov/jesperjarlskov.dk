@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use App\Post;
 use Illuminate\Http\Request;
-use Spatie\Tags\Tag;
 
 class PostsController extends Controller
 {
@@ -41,13 +40,7 @@ class PostsController extends Controller
 
         $post->published_date = now();
 
-        $available_tags = Tag::all()
-            ->keyBy('name')
-            ->map(function() {
-                return [];
-            });
-
-        return view('back.posts.create', ['post' => $post, 'available_tags' => $available_tags]);
+        return view('back.posts.create', ['post' => $post]);
     }
 
     /**
@@ -58,6 +51,7 @@ class PostsController extends Controller
     public function store(PostRequest $request)
     {
         $post = (new Post())->updateAttributes($request->user(), $request->validated());
+        $post->tag($request->get('tags', ''));
 
         $request->session()->flash('success', 'Post saved');
 
@@ -83,11 +77,7 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
-        $available_tags = Tag::all()->pluck('name');
-
-        $post_tags = $post->tags->pluck('name');
-
-        return view('back.posts.edit', ['post' => $post, 'available_tags' => $available_tags, 'post_tags' => $post_tags]);
+        return view('back.posts.edit', ['post' => $post, 'post_tags' => $post->tags->pluck('name')]);
     }
 
     /**
@@ -98,6 +88,7 @@ class PostsController extends Controller
     public function update(PostRequest $request, Post $post)
     {
         $post->updateAttributes($request->user(), $request->validated());
+        $post->retag($request->get('tags', ''));
 
         $request->session()->flash('success', 'Post updated');
 

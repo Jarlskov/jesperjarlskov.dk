@@ -5,7 +5,6 @@ namespace App\Providers;
 use App\Post;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Spatie\Tags\Tag;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -53,10 +52,6 @@ class RouteServiceProvider extends ServiceProvider
 
     public function mapFrontRoutes()
     {
-        Route::bind('tagSlug', function($slug) {
-            return Tag::where('slug->en', $slug)->first() ?? abort(404);
-        });
-
         Route::bind('postSlug', function($slug) {
             return Post::where('slug', $slug)->first() ?? abort(404);
         });
