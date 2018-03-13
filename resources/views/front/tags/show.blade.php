@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ $tag->name }}
+    {{ $tag }}
 @endsection
 
 @section('content')
-    <h1>{{ $tag->name }}</h1>
+    <h1>{{ $tag }}</h1>
     @include('front.partials.postslist', ['posts' => $posts])
 @endsection

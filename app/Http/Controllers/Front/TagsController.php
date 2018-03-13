@@ -8,12 +8,12 @@ use Illuminate\Http\Request;
 
 class TagsController extends Controller
 {
-    public function show(string $tags)
+    public function show(string $tag)
     {
         $posts = Post::orderBy('publish_date', 'DESC')
-            ->withAllTags($tags)
+            ->withAllTags($tag)
             ->paginate(50);
 
-        return view('front.tags.show', ['tags' => $tags, 'posts' => $posts]);
+        return view('front.tags.show', ['tag' => $tag, 'posts' => $posts]);
     }
 }

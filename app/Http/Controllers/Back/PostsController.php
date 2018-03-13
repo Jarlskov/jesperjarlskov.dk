@@ -23,7 +23,8 @@ class PostsController extends Controller
 
             return $posts->where('published', $request->get('filter') === 'published');
         })
-            ->orderBy('publish_date', 'desc')
+            ->orderBy('published', 'ASC')
+            ->orderBy('publish_date', 'DESC')
             ->get();
 
         return view('back.posts.index', ['posts' => $posts]);
@@ -59,17 +60,6 @@ class PostsController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param Post $post
@@ -87,6 +77,7 @@ class PostsController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
+        dd($request);
         $post->updateAttributes($request->user(), $request->validated());
         $post->retag($request->get('tags', ''));
 

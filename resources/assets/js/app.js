@@ -36,7 +36,6 @@ $(document).ready(() => {
 
         available_tags.initialize();
 
-        console.log($('#tags'));
         $('#tags').materialtags({
             typeaheadjs: [
                 {

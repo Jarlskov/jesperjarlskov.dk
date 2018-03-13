@@ -2,8 +2,19 @@
 
 <div class="row">
     <div class="input-field col s12">
-        <input name="title" id="title" type="text" placeholder="title" value="{{ old('title', $post->title) }}" />
-        <label for="title">Title</label>
+        <input name="title" id="title" type="text" {{ $errors->has('title') ? 'class=invalid' : '' }} placeholder="title" value="{{ old('title', $post->title) }}" />
+        <label for="title" {!! $errors->has('title') ? 'data-error="' . implode(', ', $errors->get('title')) . '"' : '' !!}>Title</label>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12 switch">
+        <label>
+            Unpublished
+            <input type="checkbox" name="published" id="published" {{ $post->published ? 'checked' : '' }}>
+            <span class="lever"></span>
+            Published
+        </label>
     </div>
 </div>
 

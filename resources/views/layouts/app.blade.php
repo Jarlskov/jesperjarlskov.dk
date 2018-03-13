@@ -33,8 +33,6 @@
                     <ul class="right hide-on-med-and-down">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <li>
                                 @if (Auth::user()->isAdmin())

@@ -818,7 +818,6 @@ $(document).ready(function () {
 
         available_tags.initialize();
 
-        console.log($('#tags'));
         $('#tags').materialtags({
             typeaheadjs: [{
                 highlight: true
