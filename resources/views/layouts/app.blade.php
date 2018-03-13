@@ -25,7 +25,7 @@
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
 
-          gtag('config', config('google_analytics_code'));
+          gtag('config', {{ config('google_analytics_code') }});
         </script>
     @endif
 
