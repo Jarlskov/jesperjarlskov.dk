@@ -13,3 +13,4 @@ yarn-error.log
 vessel
 docker-compose.yml
 docker/
+*.swp
