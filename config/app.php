@@ -228,4 +228,10 @@ return [
 
     ],
 
+
+    /**
+     * Google Analytics code.
+     */
+    'google_analytics_code' => env('GOOGLE_ANALYTICS_CODE', false),
+
 ];
