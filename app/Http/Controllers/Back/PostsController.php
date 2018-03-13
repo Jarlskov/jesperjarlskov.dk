@@ -77,7 +77,6 @@ class PostsController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
-        dd($request);
         $post->updateAttributes($request->user(), $request->validated());
         $post->retag($request->get('tags', ''));
 

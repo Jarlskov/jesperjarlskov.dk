@@ -33,6 +33,10 @@ class Post extends Model implements Feedable
         'updated_at',
     ];
 
+    protected $casts = [
+        'published' => 'bool',
+    ];
+
     protected static function boot()
     {
         parent::boot();
@@ -102,7 +106,7 @@ class Post extends Model implements Feedable
         $this->title = $attributes['title'];
         $this->text = $attributes['text'];
         $this->publish_date = $attributes['publish_date'] ?? now();
-        $this->published = $attributes['published'] ?? false;
+        $this->published = isset($attributes['published']) && $attributes['published'] ? true : false;
 
         $this->save();
 
