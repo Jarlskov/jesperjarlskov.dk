@@ -56,7 +56,7 @@ class RouteServiceProvider extends ServiceProvider
             return Post::where('slug', $slug)->first() ?? abort(404);
         });
 
-        Route::middleware(['web'])
+        Route::middleware(['web', 'web-frontend'])
             ->namespace($this->namespace . '\\Front')
             ->group(base_path('routes/front.php'));
     }

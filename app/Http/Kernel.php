@@ -37,6 +37,10 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
+        'web-frontend' => [
+            \Spatie\ResponseCache\Middlewares\CacheResponse::class,
+        ],
+
         'api' => [
             'throttle:60,1',
             'bindings',
