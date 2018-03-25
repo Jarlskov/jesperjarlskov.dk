@@ -107,6 +107,7 @@ class Post extends Model implements Feedable
         $this->text = $attributes['text'];
         $this->publish_date = $attributes['publish_date'] ?? now();
         $this->published = isset($attributes['published']) && $attributes['published'] ? true : false;
+        $this->user_id = $user->id;
 
         $this->save();
 
