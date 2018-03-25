@@ -21,11 +21,15 @@ class CspPolicy extends Policy
             ->addDirective(Directive::CONNECT, 'self')
             ->addDirective(Directive::DEFAULT, 'self')
             ->addDirective(Directive::FORM_ACTION, 'self')
-            ->addDirective(Directive::IMG, 'self')
+            ->addDirective(Directive::IMG, [
+                'self',
+                'data:'
+            ])
             ->addDirective(Directive::MEDIA, 'self')
             ->addDirective(Directive::OBJECT, 'self')
             ->addDirective(Directive::SCRIPT, 'self')
             ->addDirective(Directive::STYLE, 'self')
+            ->addDirective(Directive::FONT, 'self')
             ->addDirective(Directive::SCRIPT, 'localhost')
             ->addDirective(Directive::STYLE, 'localhost');
     }
@@ -35,13 +39,14 @@ class CspPolicy extends Policy
         $this->addDirective(Directive::FONT, [
             'fonts.gstatic.com',
             'fonts.googleapis.com',
-            'data:',
+            'data: '
         ])->addDirective(Directive::STYLE, 'fonts.googleapis.com');
     }
 
     protected function addGoogleAnalyticsPolicies()
     {
         $this->addDirective(Directive::SCRIPT, '*.googletagmanager.com')
+            ->addDirective(Directive::SCRIPT, '*.google-analytics.com')
             ->addNonceForDirective(Directive::SCRIPT);
     }
 
