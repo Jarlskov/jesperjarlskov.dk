@@ -10,6 +10,7 @@ class CspPolicy extends Policy
     public function configure()
     {
         $this->setDefaultPolicies();
+        $this->addBootstrapPolicies();
         $this->addGoogleFontPolicies();
         $this->addGoogleAnalyticsPolicies();
         $this->addGravatarPolicies();
@@ -30,6 +31,12 @@ class CspPolicy extends Policy
             ->addDirective(Directive::SCRIPT, 'self')
             ->addDirective(Directive::STYLE, 'self')
             ->addDirective(Directive::FONT, 'self');
+    }
+
+    protected function addBootstrapPolicies()
+    {
+        return $this->addDirective(Directive::STYLE, 'maxcdn.bootstrapcdn.com')
+            ->addDirective(Directive::CONNECT, 'cdn.jsdelivr.net');
     }
 
     protected function addGoogleFontPolicies()
