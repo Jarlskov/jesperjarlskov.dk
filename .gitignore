@@ -14,3 +14,4 @@ vessel
 docker-compose.yml
 docker/
 *.swp
+.well-known
