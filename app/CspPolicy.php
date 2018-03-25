@@ -29,9 +29,7 @@ class CspPolicy extends Policy
             ->addDirective(Directive::OBJECT, 'self')
             ->addDirective(Directive::SCRIPT, 'self')
             ->addDirective(Directive::STYLE, 'self')
-            ->addDirective(Directive::FONT, 'self')
-            ->addDirective(Directive::SCRIPT, 'localhost')
-            ->addDirective(Directive::STYLE, 'localhost');
+            ->addDirective(Directive::FONT, 'self');
     }
 
     protected function addGoogleFontPolicies()
