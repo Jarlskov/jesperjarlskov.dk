@@ -10,12 +10,7 @@
 
     <title>@yield('title', config('app.name', 'Laravel') )</title>
 
-    <!-- Styles -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="{{ asset('css/materialize.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/simplemde.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/prism.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     @if (config('app.google_analytics_code'))
         <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -79,6 +74,12 @@
             @yield('content')
         </div>
     </div>
+
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="{{ asset('css/simplemde.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/prism.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <link href="{{ asset('css/materialize-tags.min.css') }}" rel="stylesheet">
     <script src="{{ asset('js/jquery.min.js') }}"></script>
