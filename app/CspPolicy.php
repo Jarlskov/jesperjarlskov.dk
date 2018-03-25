@@ -36,6 +36,7 @@ class CspPolicy extends Policy
     protected function addBootstrapPolicies()
     {
         return $this->addDirective(Directive::STYLE, 'maxcdn.bootstrapcdn.com')
+            ->addDirective(Directive::FONT, 'maxcdn.bootstrapcdn.com')
             ->addDirective(Directive::CONNECT, 'cdn.jsdelivr.net');
     }
 
