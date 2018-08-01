@@ -11,9 +11,9 @@
         </div>
     </form>
 
-    <ul>
+    <ul id="backend-postlist">
         @foreach ($posts as $post)
-            <li><a href="{{ action('Back\PostsController@edit', $post) }}">{{ $post->title }} {{ !$post->published ? ' - draft' : '' }}</a></li>
+            <li><a href="{{ action('Back\PostsController@edit', $post) }}">{{ $post->title }} {{ !$post->published ? ' - draft' : '' }}</a><span>delete</span></li>
         @endforeach
     </ul>
     <div class="fixed-action-btn">

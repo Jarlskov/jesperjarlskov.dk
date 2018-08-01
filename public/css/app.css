@@ -1,1 +1,13 @@
-html{font-size:12px}
+html {
+  font-size: 12px;
+}
+
+#backend-postlist li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+

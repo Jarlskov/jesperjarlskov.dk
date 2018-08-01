@@ -1,3 +1,8 @@
 html {
     font-size: 12px;
 }
+
+#backend-postlist li {
+    display: flex;
+    justify-content: space-between;
+}
