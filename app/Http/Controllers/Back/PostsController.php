@@ -56,7 +56,7 @@ class PostsController extends Controller
 
         $request->session()->flash('success', 'Post saved');
 
-        return redirect()->action('Back\PostController@edit', $post->id);
+        return redirect()->action('Back\PostsController@edit', $post->id);
     }
 
     /**
