@@ -11,8 +11,6 @@ npm-debug.log
 yarn-error.log
 .env
 vessel
-docker-compose.yml
-docker/
 *.swp
 .well-known
 /exports
