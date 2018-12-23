@@ -19,6 +19,12 @@ jobs:
     steps:
       - checkout
 
+      - run:
+          name: Start containers and verify it's running
+          command: |
+              set -x
+              docker-compose up -d
+
       # Download and cache dependencies
       - restore_cache:
           keys:
