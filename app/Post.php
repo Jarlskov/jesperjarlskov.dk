@@ -44,7 +44,7 @@ class Post extends Model implements Feedable
         static::addGlobalScope(new PublishedScope);
     }
 
-    public function toFeedItem()
+    public function toFeedItem(): FeedItem
     {
         return FeedItem::create()
             ->id($this->id)

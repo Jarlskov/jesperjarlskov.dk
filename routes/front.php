@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'PostsController@index');
+Route::get('', 'PostsController@index');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -19,4 +19,4 @@ Route::feeds();
 
 Route::get('/tag/{tagSlug}', 'TagsController@show');
 
-Route::get('{postSlug}', 'PostsController@show');
+Route::get('/{postSlug}', 'PostsController@show');
