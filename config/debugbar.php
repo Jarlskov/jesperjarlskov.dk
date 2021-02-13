@@ -13,7 +13,7 @@ return [
      |
      */
 
-    'enabled' => env('DEBUGBAR_ENABLED', null),
+    'enabled' => env('DEBUGBAR_ENABLED', false),
     'except' => [
         //
     ],
@@ -141,7 +141,7 @@ return [
             'backtrace'         => true,   // Use a backtrace to find the origin of the query in your files.
             'timeline'          => true,  // Add the queries to the timeline
             'explain' => [                 // Show EXPLAIN output on queries
-                'enabled' => false,
+                'enabled' => true,
                 'types' => ['SELECT'],     // ['SELECT', 'INSERT', 'UPDATE', 'DELETE']; for MySQL 5.6.3+
             ],
             'hints'             => true,    // Show hints for common mistakes
@@ -150,7 +150,7 @@ return [
             'full_log' => false
         ],
         'views' => [
-            'data' => false,    //Note: Can slow down the application, because the data can be quite large..
+            'data' => true,    //Note: Can slow down the application, because the data can be quite large..
         ],
         'route' => [
             'label' => true  // show complete route on bar
