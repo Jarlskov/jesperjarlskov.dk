@@ -2,19 +2,32 @@ name: Github Actions
 on: [push]
 jobs:
   Run-Tests:
+    strategy:
+      matrix:
+        php:
+          - "8.0"
+          - "8.1"
+
     runs-on: ubuntu-latest
     steps:
+      - name: Setup PHP Action
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "${{ matrix.php }}"
+          extensions: sqlite
+
       - uses: actions/checkout@v3
-      - uses: php-actions/composer@v6
 
       - name: Cache Composer Packages
         id: composer-cache
         uses: actions/cache@v3
         with:
-          path: vendor
-          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-php-
+          path: "::set-output name=dir::$(composer config cache-files-dir)"
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install dependencies
+        run: composer install --prefer-dist
 
       - name: Run tests
-        run: php composer run-script test
+        run: composer run-script test
