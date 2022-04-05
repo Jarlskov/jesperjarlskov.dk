@@ -15,6 +15,7 @@ jobs:
         with:
           php-version: "${{ matrix.php }}"
           extensions: sqlite
+          tools: phpcpd, phpmd, phpstan
 
       - uses: actions/checkout@v3
 
@@ -31,3 +32,13 @@ jobs:
 
       - name: Run tests
         run: composer run-script test
+
+      - name: Run phpcpd
+        run: phpcpd --fuzzy app
+
+      - name: Run phpmd
+        run: phpmd app github codesize,unusedcode,naming,design
+
+      - name: Run phpstan
+        run: phpstan analyse app tests
+

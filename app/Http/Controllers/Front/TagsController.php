@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Http\Request;
 
-class TagsController extends Controller
+class TagsController extends BaseController
 {
     public function show(string $tag)
     {

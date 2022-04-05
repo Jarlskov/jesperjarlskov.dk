@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Back;
 
-use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Http\Request;
 
-class TagsController extends Controller
+class TagsController extends BaseController
 {
-    public function index(Request $request)
+    public function index()
     {
         return array_values(Post::allTags());
     }

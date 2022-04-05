@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Back;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use App\Post;
 use Illuminate\Http\Request;
 
-class PostsController extends Controller
+class PostsController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -91,8 +90,10 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($postId)
     {
-        //
+        Post::find($postId)->delete();
+
+        return "Post {$postId} deleted";
     }
 }
