@@ -45,23 +45,23 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        $this->mapApiRoutes();
+        //$this->mapApiRoutes();
 
         $this->mapBackRoutes();
 
         $this->mapFrontRoutes();
     }
 
-    public function mapBackRoutes()
+    public function mapBackRoutes(): void
     {
         Route::middleware('web')
             ->namespace($this->namespace . '\\Back')
             ->group(base_path('routes/back.php'));
     }
 
-    public function mapFrontRoutes()
+    public function mapFrontRoutes(): void
     {
-        Route::bind('postSlug', function($slug) {
+        Route::bind('postSlug', function ($slug) {
             return Post::where('slug', $slug)->first() ?? abort(404);
         });
 

@@ -7,7 +7,7 @@ use Spatie\Csp\Policies\Policy;
 
 class CspPolicy extends Policy
 {
-    public function configure()
+    public function configure(): void
     {
         $this->setDefaultPolicies();
         $this->addBootstrapPolicies();
@@ -16,7 +16,7 @@ class CspPolicy extends Policy
         $this->addGravatarPolicies();
     }
 
-    protected function setDefaultPolicies()
+    protected function setDefaultPolicies(): Policy
     {
         return $this->addDirective(Directive::BASE, 'self')
             ->addDirective(Directive::CONNECT, 'self')
@@ -33,14 +33,14 @@ class CspPolicy extends Policy
             ->addDirective(Directive::FONT, 'self');
     }
 
-    protected function addBootstrapPolicies()
+    protected function addBootstrapPolicies(): Policy
     {
         return $this->addDirective(Directive::STYLE, 'maxcdn.bootstrapcdn.com')
             ->addDirective(Directive::FONT, 'maxcdn.bootstrapcdn.com')
             ->addDirective(Directive::CONNECT, 'cdn.jsdelivr.net');
     }
 
-    protected function addGoogleFontPolicies()
+    protected function addGoogleFontPolicies(): void
     {
         $this->addDirective(Directive::FONT, [
             'fonts.gstatic.com',
@@ -49,14 +49,14 @@ class CspPolicy extends Policy
         ])->addDirective(Directive::STYLE, 'fonts.googleapis.com');
     }
 
-    protected function addGoogleAnalyticsPolicies()
+    protected function addGoogleAnalyticsPolicies(): void
     {
         $this->addDirective(Directive::SCRIPT, '*.googletagmanager.com')
             ->addDirective(Directive::SCRIPT, '*.google-analytics.com')
             ->addNonceForDirective(Directive::SCRIPT);
     }
 
-    protected function addGravatarPolicies()
+    protected function addGravatarPolicies(): void
     {
         $this->addDirective(Directive::IMG, '*.gravatar.com');
     }

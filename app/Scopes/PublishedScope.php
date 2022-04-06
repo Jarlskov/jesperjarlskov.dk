@@ -16,6 +16,5 @@ class PublishedScope implements Scope
         if (!Auth::check() || !Auth::user()->isAdmin()) {
             $builder->where('published', true);
         }
-        $model;
     }
 }

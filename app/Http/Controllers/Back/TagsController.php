@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class TagsController extends BaseController
 {
-    public function index()
+    public function index(): array
     {
         return array_values(Post::allTags());
     }

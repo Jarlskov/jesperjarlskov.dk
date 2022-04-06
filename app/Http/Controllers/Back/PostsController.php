@@ -11,11 +11,11 @@ class PostsController extends BaseController
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index(Request $request)
     {
-        $posts = Post::when($request->has('filter'), function($posts) use ($request) {
+        $posts = Post::when($request->has('filter'), function ($posts) use ($request) {
             if ($request->get('filter') === 'all') {
                 return $posts;
             }
@@ -32,13 +32,13 @@ class PostsController extends BaseController
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
         $post = new Post();
 
-        $post->published_date = now();
+        $post->publish_date = now();
 
         return view('back.posts.create', ['post' => $post]);
     }
@@ -46,7 +46,7 @@ class PostsController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(PostRequest $request)
     {
@@ -62,7 +62,7 @@ class PostsController extends BaseController
      * Show the form for editing the specified resource.
      *
      * @param Post $post
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(Post $post)
     {
@@ -72,7 +72,7 @@ class PostsController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(PostRequest $request, Post $post)
     {
@@ -87,8 +87,8 @@ class PostsController extends BaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  int  $postId
+     * @return string
      */
     public function destroy($postId)
     {

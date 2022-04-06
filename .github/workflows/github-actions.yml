@@ -15,7 +15,7 @@ jobs:
         with:
           php-version: "${{ matrix.php }}"
           extensions: sqlite
-          tools: phpcpd, phpmd, phpstan
+          tools: phpcpd, phpcs, phpmd
 
       - uses: actions/checkout@v3
 
@@ -36,9 +36,12 @@ jobs:
       - name: Run phpcpd
         run: phpcpd --fuzzy app
 
+      - name: Run phpcs
+        run: phpcs --standard=PSR1,PSR2 app 
+
       - name: Run phpmd
-        run: phpmd app github codesize,unusedcode,naming,design
+        run: phpmd app github codesize,naming,design
 
       - name: Run phpstan
-        run: phpstan analyse app tests
+        run: ./vendor/bin/phpstan analyse
 

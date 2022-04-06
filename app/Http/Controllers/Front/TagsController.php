@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class TagsController extends BaseController
 {
+    /**
+     * @return \Illuminate\View\View
+     */
     public function show(string $tag)
     {
         $posts = Post::orderBy('publish_date', 'DESC')

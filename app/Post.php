@@ -6,6 +6,7 @@ use App\Scopes\PublishedScope;
 use App\User;
 use Cviebrock\EloquentTaggable\Taggable;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use League\CommonMark\CommonMarkConverter;
@@ -47,7 +48,7 @@ class Post extends Model implements Feedable
     public function toFeedItem(): FeedItem
     {
         return FeedItem::create()
-            ->id($this->id)
+            ->id((string) $this->id)
             ->title($this->title)
             ->summary($this->summary)
             ->updated($this->updated_at)
@@ -80,7 +81,7 @@ class Post extends Model implements Feedable
         return substr(strip_tags($this->text), 0, 250) . '...';
     }
 
-    public function getTextAttribute($original) : string
+    public function getTextAttribute(string $original) : string
     {
         $converter = new CommonMarkConverter();
 
@@ -92,17 +93,17 @@ class Post extends Model implements Feedable
         return $this->getOriginal('text', '');
     }
 
-    public function author()
+    public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function scopePublished(Builder $query)
+    public function scopePublished(Builder $query): Builder
     {
         return $query->where('published', true);
     }
 
-    public function updateAttributes(User $user, Array $attributes)
+    public function updateAttributes(User $user, Array $attributes): self
     {
         $this->title = $attributes['title'];
         $this->text = $attributes['text'];

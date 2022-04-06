@@ -17,7 +17,7 @@ class ImportWp extends Command
 
     protected $description = 'Import the old WordPress database';
 
-    public function handle()
+    public function handle(): void
     {
         $this->truncateTables();
 
@@ -46,7 +46,7 @@ class ImportWp extends Command
             });
     }
 
-    protected function truncateTables()
+    protected function truncateTables(): void
     {
         Schema::disableForeignKeyConstraints();
 
@@ -64,19 +64,19 @@ class ImportWp extends Command
         return $postContent;
     }
 
-    protected function attachTags(stdClass $oldPost, Post $post)
+    protected function attachTags(stdClass $oldPost, Post $post): void
     {
         $table_prefix = env('WP_TABLE_PREFIX');
 
         $tags = DB::select(DB::raw("SELECT * FROM {$table_prefix}wp_terms
-                 INNER JOIN {$table_prefix}wp_term_taxonomy
-                 ON {$table_prefix}wp_term_taxonomy.term_id = {$table_prefix}wp_terms.term_id
-                 INNER JOIN {$table_prefix}wp_term_relationships
-                 ON {$table_prefix}wp_term_relationships.term_taxonomy_id = {$table_prefix}wp_term_taxonomy.term_taxonomy_id
-                 WHERE taxonomy IN ('post_tag', 'category') AND object_id = {$oldPost->ID}"));
+             INNER JOIN {$table_prefix}wp_term_taxonomy
+             ON {$table_prefix}wp_term_taxonomy.term_id = {$table_prefix}wp_terms.term_id
+             INNER JOIN {$table_prefix}wp_term_relationships
+             ON {$table_prefix}wp_term_relationships.term_taxonomy_id = {$table_prefix}wp_term_taxonomy.term_taxonomy_id
+             WHERE taxonomy IN ('post_tag', 'category') AND object_id = {$oldPost->ID}"));
 
         collect($tags)
-            ->filter(function(stdClass $tag) {
+            ->filter(function (stdClass $tag) {
                 return $tag->slug !== 'uncategorized';
             })
             ->map(function (stdClass $tag) {
